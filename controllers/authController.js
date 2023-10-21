@@ -54,7 +54,7 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res, next) => {
     try {
-        console.log(req.body);
+        // console.log(req.body);
         const email = req.body.email;
         const password = req.body.password;
         if (!email || !password) {
@@ -151,7 +151,7 @@ exports.isLoggedIn = async (req, res, next) => {
 
 exports.logout = (req, res) => {
     res.cookie('jwt', 'loggedout', {
-        expires: new Date(Date.now() + 10 * 1000),
+        expires: new Date(Date.now() + 5 * 1000),
         httpOnly: true
     });
     res.status(200).json({ status: 'success' });

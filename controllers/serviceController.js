@@ -1,7 +1,5 @@
 const Service = require('./../models/serviceModel')
 
-
-
 exports.createEvent = async (req, res) => {
     try {
         const newEvent = await Service.create({
@@ -35,37 +33,6 @@ exports.createEvent = async (req, res) => {
         })
     }
 }
-
-// const serviceId = 'your-service-id'; // Replace with the actual service's _id you want to update.
-
-// Service.findById(serviceId, (err, service) => {
-//     if (err) {
-//         // Handle the error, e.g., return an error response.
-//         console.error(err);
-//         return;
-//     }
-
-//     // Now, you can push a new registration object to the registeredFolks array.
-//     const newRegistration = {
-//         name: 'John Doe',
-//         city: 'New York',
-//         email: 'john@example.com',
-//     };
-//     service.registeredFolks.push(newRegistration);
-
-//     // Save the updated document.
-//     service.save((err, updatedService) => {
-//         if (err) {
-//             // Handle the error, e.g., return an error response.
-//             console.error(err);
-//         } else {
-//             // The registration has been added, and the updated service is available as "updatedService".
-//             // You can respond with the updated service or perform any other necessary actions.
-//             console.log('Registration added:', newRegistration);
-//             console.log('Updated service:', updatedService);
-//         }
-//     });
-// });
 
 exports.registerFolks = async (req, res) => {
     try {
@@ -123,14 +90,14 @@ exports.reviewService = async (req, res) => {
             });
         }
         else {
-
+            //to checck for duplicate review
             const duplicateReview = service.registeredFolks.some(rev => rev.email === req.body.email);
             if (duplicateReview) {
                 return res.status(400).json({
                     status: "Bad Request",
                 });
             }
-
+            //if not
             const newreview = {
                 from: req.body.email,
                 feedback: req.body.description
