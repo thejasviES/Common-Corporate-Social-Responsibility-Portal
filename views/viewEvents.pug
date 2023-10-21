@@ -19,27 +19,50 @@ section.bg-light.py-2
           else    
             li.nav-item
               a.nav-link.text-dark.ms-3.btn.btn-outline-primary.px-4.fw-semibold.border-0(href='/login') Login
+
+h1(style="text-align:center; margin-top:3px;") Up-Coming Events
 .row.mt-3
   each s in services
-    .col-lg-4.col-md-6.col-12
-      .card
-        .card-body
-          h5.card-title(style="text-align:center;") "service name"
-          h3(style="text-align:center; margin-top:3px;")
-            span(style="margin:3px;color:black;") " start-date :"
-            span(style="margin:3px;color:green;") "12/10/23"
-          h3(style="text-align:center; margin-top:3px;")
-            span(style="margin:3px;color:black;") " end-date :"
-            span(style="margin:3px;color:green;") "12/10/23"
-          p.card-text "lorem ipsum dollar aggs jhuw jkhihd jk lorem ipsum dollar aggs jhuw jkhihd jk lorem ipsum dollar aggs jhuw jkhihd jk"
-          h3(style="text-align:center; margin-top:3px;")
-            span(style="margin:3px;color:black;") " time :"
-            span(style="margin:3px;color:green;") "from 12/10/23 to 12/45/52"
-          h4(style="text-align:center; margin-top:3px;")
-            a.btn.btn-primary(href=``)
-                |  Register for event
+    if(((new Date(`${s.date[0].end}`))>(new Date())) && (`${s.createdBy._id}`===`${id}`))
+        .col-lg-4.col-md-6.col-12
+            .card
+                .card-body
+                    h5.card-title(style="text-align:center;")=s.serviceName
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") " start-date :"
+                        span(style="margin:3px;color:green;")=s.date[0].start
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") " end-date :"
+                        span(style="margin:3px;color:red;")=s.date[0].end
+                    p.card-text(style="text-align:center;")=`Event details: ${s.description}`
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") " time :"
+                        span(style="margin:3px;color:green;")=`from ${s.time[0].start} to ${s.time[0].end} `
+                    h4(style="text-align:center; margin-top:3px;")
+                        a.btn.btn-primary(href=`/register/${s._id}`)
+                            |  Register for event
 
-
+h1(style="text-align:center; margin-top:3px;") Previous Events
+.row.mt-3
+  each s in services
+    if(((new Date(`${s.date[0].end}`))<(new Date())) && (`${s.createdBy._id}`===`${id}`))
+        .col-lg-4.col-md-6.col-12
+            .card
+                .card-body
+                    h5.card-title(style="text-align:center;")=s.serviceName
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") " start-date :"
+                        span(style="margin:3px;color:green;")=s.date[0].start
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") " end-date :"
+                        span(style="margin:3px;color:red;")=s.date[0].end
+                    p.card-text(style="text-align:center;")=`Event details: ${s.description}`
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") " time :"
+                        span(style="margin:3px;color:green;")=`from ${s.time[0].start} to ${s.time[0].end} `
+                    h4(style="text-align:center; margin-top:3px;")
+                        a.btn.btn-primary(href=`/review/${s._id}`)
+                            |  Review event
 
 include footer
 
