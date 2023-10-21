@@ -1,0 +1,17 @@
+include head
+include navBar   
+section.wrapper(style='padding:5rem 0;')
+  .container
+    .col-sm-8.offset-sm-2.col-lg-6.offset-lg-3.col-xl-4.offset-xl-4.text-center
+      .logo
+       form.rounded.bg-white.shadow.p-5
+        h3.text-dark.fw-bolder.fs-4.mb-2 Write review 
+            .form-floating.mb-3
+            input#email.form-control(type='email' placeholder='Email ID')
+        .form-floating.mb-3
+                    #rand.input-group.date
+                        textarea#description.form-control(placeholder='feedback', aria-label='With textarea')    
+        button.btn.btn-primary.submit_btn.w-100.my-4(type='submit') Submit
+script(src="/js/review.js")         
+include footer
+           

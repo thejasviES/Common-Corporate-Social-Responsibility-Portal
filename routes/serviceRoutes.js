@@ -5,6 +5,6 @@ const authController = require("./../controllers/authController");
 
 
 Router.post("/event", authController.protect, serviceController.createEvent);
-Router.post("/register", authController.protect, serviceController.registerFolks);
-
+Router.post("/register", serviceController.registerFolks);
+Router.post("/review", serviceController.reviewService);
 module.exports = Router;

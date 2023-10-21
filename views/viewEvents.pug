@@ -1,0 +1,68 @@
+include head 
+section.bg-light.py-2
+  nav.navbar.navbar-expand-lg.bg-light.w-75.w-100.mx-auto(style='background-color: rgba(0, 0, 0, 0.2);')
+    .container-fluid
+      a.navbar-brand.text-dark.fw-semibold.w-25.ms-lg-5(href='#') PsycheTech
+      button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mb-2.mb-lg-0.ms-auto.me-lg-5
+          li.nav-item
+            a.nav-link.text-dark.active.btn.btn-outline-primary.px-4.fw-semibold.border-0(aria-current='page' href='/home') Home
+          li.nav-item
+            a.nav-link.text-dark.ms-3.btn.btn-outline-primary.px-4.fw-semibold.border-0(href='#about') About
+          li.nav-item
+            a.nav-link.text-dark.ms-3.btn.btn-outline-primary.px-4.fw-semibold.border-0(href='#package') Contact
+          if user  
+            li.nav-item
+              a.nav-link.text-dark.ms-3.btn.btn-outline-primary.px-4.fw-semibold.border-0(href='#',class='logout-button') Logout
+          else    
+            li.nav-item
+              a.nav-link.text-dark.ms-3.btn.btn-outline-primary.px-4.fw-semibold.border-0(href='/login') Login
+
+h1(style="text-align:center; margin-top:3px;") Up-Coming Events
+.row.mt-3
+  each s in services
+    if(((new Date(`${s.date[0].end}`))>(new Date())) && (`${s.createdBy._id}`===`${id}`))
+        .col-lg-4.col-md-6.col-12
+            .card
+                .card-body
+                    h5.card-title(style="text-align:center;")=s.serviceName
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") " start-date :"
+                        span(style="margin:3px;color:green;")=s.date[0].start
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") " end-date :"
+                        span(style="margin:3px;color:red;")=s.date[0].end
+                    p.card-text(style="text-align:center;")=`Event details: ${s.description}`
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") " time :"
+                        span(style="margin:3px;color:green;")=`from ${s.time[0].start} to ${s.time[0].end} `
+                    h4(style="text-align:center; margin-top:3px;")
+                        a.btn.btn-primary(href=`/register/${s._id}`)
+                            |  Register for event
+
+h1(style="text-align:center; margin-top:3px;") Previous Events
+.row.mt-3
+  each s in services
+    if(((new Date(`${s.date[0].end}`))<(new Date())) && (`${s.createdBy._id}`===`${id}`))
+        .col-lg-4.col-md-6.col-12
+            .card
+                .card-body
+                    h5.card-title(style="text-align:center;")=s.serviceName
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") " start-date :"
+                        span(style="margin:3px;color:green;")=s.date[0].start
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") " end-date :"
+                        span(style="margin:3px;color:red;")=s.date[0].end
+                    p.card-text(style="text-align:center;")=`Event details: ${s.description}`
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") " time :"
+                        span(style="margin:3px;color:green;")=`from ${s.time[0].start} to ${s.time[0].end} `
+                    h4(style="text-align:center; margin-top:3px;")
+                        a.btn.btn-primary(href=`/review/${s._id}`)
+                            |  Review event
+
+include footer
+
