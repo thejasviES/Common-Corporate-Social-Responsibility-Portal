@@ -20,27 +20,25 @@ section.bg-light.py-2
             li.nav-item
               a.nav-link.text-dark.ms-3.btn.btn-outline-primary.px-4.fw-semibold.border-0(href='/login') Login
 .row.mt-3
-  each u in users
+  each s in services
     .col-lg-4.col-md-6.col-12
       .card
-        img.card-img-top(src='https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp' alt='Hollywood Sign on The Hill' style="width:80%; height:auto; display:block;margin:auto;")
         .card-body
-          h5.card-title(style="text-align:center;")=u.name
+          h5.card-title(style="text-align:center;") "service name"
+          h3(style="text-align:center; margin-top:3px;")
+            span(style="margin:3px;color:black;") " start-date :"
+            span(style="margin:3px;color:green;") "12/10/23"
+          h3(style="text-align:center; margin-top:3px;")
+            span(style="margin:3px;color:black;") " end-date :"
+            span(style="margin:3px;color:green;") "12/10/23"
+          p.card-text "lorem ipsum dollar aggs jhuw jkhihd jk lorem ipsum dollar aggs jhuw jkhihd jk lorem ipsum dollar aggs jhuw jkhihd jk"
+          h3(style="text-align:center; margin-top:3px;")
+            span(style="margin:3px;color:black;") " time :"
+            span(style="margin:3px;color:green;") "from 12/10/23 to 12/45/52"
           h4(style="text-align:center; margin-top:3px;")
-            a.btn.btn-success(href=`tel:+91${u.phone}`)
-              i.fas.fa-phone
-                | Contact for emergency need
-          h4(style="text-align:center; margin-top:3px;")
-            a.btn.btn-primary(href=`mailto:${u.email}`)
-              i.fas.fa-envelope
-                |  Contact for more info
+            a.btn.btn-primary(href=``)
+                |  Register for event
 
-          .not(style="text-align:center; margin-top:3px;") 
-              button.btn.btn-dark.position-relative(type='button')
-                a(href=`/viewEvents/${u._id}` style="color:white;")
-                  | View events
-                span.not_number.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.badge-danger(style="color:red;font-size:2rem;")=`${u.phone[0]}+`
-                  span.visually-hidden unread messages
 
 
 include footer
