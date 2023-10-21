@@ -8,6 +8,7 @@ const path = require('path');
 
 const viewsRoutes = require("./routes/viewsRoutes");
 const userRoutes = require("./routes/userRoutes")
+const serviceRoutes = require("./routes/serviceRoutes")
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', viewsRoutes)
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/service", serviceRoutes)
 
 module.exports = app;

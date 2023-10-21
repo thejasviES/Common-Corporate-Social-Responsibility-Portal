@@ -4,28 +4,56 @@ section.wrapper(style='padding:5rem 0;')
     .container
         .col-sm-8.offset-sm-2.col-lg-6.offset-lg-3.col-xl-4.offset-xl-4.text-center
             form.rounded.bg-white.shadow.p-5
-                h3.text-dark.fw-bolder.fs-4.mb-2 Create an Account
-                .fw-normal.text-muted.mb-2
-                    | Already have an account?
-                    a.text-primary.fw-bold.text-decoration-none(href='/login') Sign in here
+                h3.text-dark.fw-bolder.fs-4.mb-2 Create an Event
                 .form-floating.mb-3
-                    input#serviceName.form-control(type='text' placeholder='Service Name')
-                    label(for='serviceName') Service Name
+                    #rand.input-group.date
+                        input#event.form-control(type='text' placeholder='Event name')
                 .form-floating.mb-3
-                    input#description.form-control(type='text' placeholder='Description')
-                    label(for='description') Description
+                    #rand.input-group.date
+                        textarea#description.form-control(placeholder='Description', aria-label='With textarea')
                 .form-floating.mb-3
-                    input#startDate.form-control(type='text' placeholder='Start Date')
-                    label(for='startDate') Start Date
+                    #picker1.input-group.date
+                        input#startDate.form-control(type='text' placeholder='start date')
+                        //- label(for='serviceName') Service Name
+                        span.input-group-addon
+                            span.glyphicon.glyphicon-calendar
                 .form-floating.mb-3
-                    input#endDate.form-control(type='text' placeholder='End Date')
-                    label(for='endDate') End Date
+                    #picker2.input-group.date
+                        input#endDate.form-control(type='text' placeholder='end date' )
+                        //- label(for='serviceName') Service Name
+                        span.input-group-addon
+                            span.glyphicon.glyphicon-calendar 
                 .form-floating.mb-3
-                    input#startTime.form-control(type='text' placeholder='Start Time')
-                    label(for='startTime') Start Time
+                    #rand.input-group.date
+                        input#startTime.form-control(type='text'  placeholder='start time')
+                    
                 .form-floating.mb-3
-                    input#endTime.form-control(type='text' placeholder='End Time')
-                    label(for='endTime') End Time
-                button.btn.btn-primary.submit_btn.w-100.my-4(type='submit') Continue
+                    #rand.input-group.date
+                        input#endTime.form-control(type='text'  placeholder='end time')
+                    button.btn.btn-primary.submit_btn.w-100.my-4(type='submit') Create
 include footer 
+script(src="/js/eventForm.js")  
 script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js' integrity='sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg==' crossorigin='anonymous' referrerpolicy='no-referrer')
+script(type='text/javascript').
+  $(function () {
+  $("#picker1").datetimepicker({
+  format: "YYYY-MM-DD", // Set the format to display only the date
+  });
+  $("#picker2").datetimepicker({
+  format: "YYYY-MM-DD", // Set the format to display only the date
+  useCurrent: false,
+  });
+  $("#picker1").on("dp.change", function (e) {
+  $("#picker2").data("DateTimePicker").minDate(e.date);
+  });
+  $("#picker2").on("dp.change", function (e) {
+  $("#picker1").data("DateTimePicker").maxDate(e.date);
+  });
+  $('#startTime').datetimepicker({
+        format: 'hh:mm a'
+  });
+  $('#endTime').datetimepicker({
+        format: 'hh:mm a'
+  });
+  });
+
