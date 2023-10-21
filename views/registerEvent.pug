@@ -1,0 +1,17 @@
+include head
+include navBar   
+section.wrapper(style='padding:5rem 0;')
+  .container
+    .col-sm-8.offset-sm-2.col-lg-6.offset-lg-3.col-xl-4.offset-xl-4.text-center
+      .logo
+       form.rounded.bg-white.shadow.py-5.px-4
+        h3.text-dark.fw-bolder.fs-4.mb-2 Register for somthing Event 
+            .form-floating.mb-3
+            input#email.form-control(type='email' placeholder='Email ID')
+            .form-floating.mb-3
+            input#name.form-control(type='text' placeholder='Name')
+            .form-floating.mb-3
+            input#city.form-control(type='text' placeholder='City')
+        button.btn.btn-primary.submit_btn.w-100.my-4(type='submit') Register
+include footer
+script(src="/js/eventRegister.js")            
