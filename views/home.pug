@@ -1,5 +1,4 @@
 include head 
-
 section.bg-light.py-2
   nav.navbar.navbar-expand-lg.bg-light.w-75.w-100.mx-auto(style='background-color: rgba(0, 0, 0, 0.2);')
     .container-fluid
@@ -17,8 +16,6 @@ section.bg-light.py-2
           if user  
             li.nav-item
               a.nav-link.text-dark.ms-3.btn.btn-outline-primary.px-4.fw-semibold.border-0(href='#',class='logout-button') Logout
-            li.nav-item
-              a.nav-link.text-dark.ms-3.btn.btn-outline-primary.px-4.fw-semibold.border-0(href='/userProfile') Profile
           else    
             li.nav-item
               a.nav-link.text-dark.ms-3.btn.btn-outline-primary.px-4.fw-semibold.border-0(href='/login') Login
