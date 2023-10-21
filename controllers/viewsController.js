@@ -13,3 +13,7 @@ exports.signupPage = async (req, res, next) => {
 exports.loginPage = async (req, res, next) => {
     res.status(200).render('login');
 }
+
+exports.eventRegisterPage = async (req, res) => {
+    res.status(200).render('eventForm');
+}

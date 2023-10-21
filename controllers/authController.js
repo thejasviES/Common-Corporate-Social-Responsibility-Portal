@@ -1,6 +1,6 @@
 const User = require("./../models/userModel");
 const jwt = require("jsonwebtoken");
-//const { promisify } = require("util");
+const { promisify } = require("util");
 
 const signToken = id => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -30,6 +30,7 @@ exports.signup = async (req, res) => {
     try {
         console.log(req.body.name, req.body.email, req.body.password, req.body.confirmPassword, req.body.phone);
         const newUser = await User.create({
+
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
@@ -53,6 +54,7 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res, next) => {
     try {
+        console.log(req.body);
         const email = req.body.email;
         const password = req.body.password;
         if (!email || !password) {
@@ -126,6 +128,7 @@ exports.protect = async (req, res, next) => {
 }
 exports.isLoggedIn = async (req, res, next) => {
     if (req.cookies.jwt) {
+        //console.log("hii");
         try {
             const decoded = await promisify(jwt.verify)(
                 req.cookies.jwt,
@@ -136,10 +139,20 @@ exports.isLoggedIn = async (req, res, next) => {
                 return next();
             }
             res.locals.user = currentUser;
+            // console.log(res.locals.user);
             return next();
         } catch (err) {
+            console.log(err);
             return next();
         }
     }
     next();
+};
+
+exports.logout = (req, res) => {
+    res.cookie('jwt', 'loggedout', {
+        expires: new Date(Date.now() + 10 * 1000),
+        httpOnly: true
+    });
+    res.status(200).json({ status: 'success' });
 };

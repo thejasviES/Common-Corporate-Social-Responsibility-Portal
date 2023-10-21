@@ -17,7 +17,7 @@ const signup = async (name, email, phone, password, confirmPassword) => {
             window.alert("login successfull")
             window.setTimeout(() => {
                 location.assign('/home')
-            }, 1500)
+            }, 100)
         }
     } catch (err) {
         // console.log(res);
