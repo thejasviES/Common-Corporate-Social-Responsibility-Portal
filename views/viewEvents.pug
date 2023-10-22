@@ -41,9 +41,10 @@ h1(style="text-align:center; margin-top:3px;") Up-Coming Events
                     h4(style="text-align:center; margin-top:3px;")
                         a.btn.btn-primary(href=`/register/${s._id}` style="margin:3px;")
                             |  Register for event
-
-                        a.btn.btn-primary(href=`/viewAllFolks/${s._id}` style="margin:3px;")
-                            | See Registered Folks
+                        if user      
+                          - if (`${s.createdBy._id}` === `${user.id}`)
+                            a.btn.btn-primary(href=`/viewAllFolks/${s._id}` style="margin:3px;")
+                                | See Registered Folks
 
 h1(style="text-align:center; margin-top:3px;") Previous Events
 .row.mt-3
