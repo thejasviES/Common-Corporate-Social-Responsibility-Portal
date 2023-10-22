@@ -2,7 +2,7 @@ include head
 section.bg-light.py-2
   nav.navbar.navbar-expand-lg.bg-light.w-75.w-100.mx-auto(style='background-color: rgba(0, 0, 0, 0.2);')
     .container-fluid
-      a.navbar-brand.text-dark.fw-semibold.w-25.ms-lg-5(href='#') PsycheTech
+      a.navbar-brand.text-dark.fw-semibold.w-25.ms-lg-5(href='#') CCSRP
       button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
@@ -50,7 +50,7 @@ h1(style="text-align:center; margin-top:3px;") Previous Events
 .row.mt-3
   each s in services
     if(((new Date(`${s.date[0].end}`))<(new Date())) && (`${s.createdBy._id}`===`${id}`))
-        .col-lg-4.col-md-6.col-12
+        .col-lg-4.col-md-6.col-12.mt-4
             .card
                 .card-body
                     h5.card-title(style="text-align:center;")=s.serviceName

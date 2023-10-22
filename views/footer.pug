@@ -1,8 +1,15 @@
 div
-  footer.bg-light.text-center.text-white
+  // Add a wrapper for your content, which will push the footer to the bottom
+  .content-wrapper
+    // Your content here
+
+  // Footer
+  footer.bg-light.text-center.text-white.fixed-bottom // Add the fixed-bottom class
     // Grid container
     .container.p-4.pb-0
+      // Social media links
       section.mb-4
+        // Facebook
         a.btn.btn-primary.btn-floating.m-1(style='background-color: #3b5998;' href='#!' role='button')
           i.fab.fa-facebook-f
         // Twitter
@@ -20,9 +27,11 @@ div
         // Github
         a.btn.btn-primary.btn-floating.m-1(style='background-color: #333333;' href='#!' role='button')
           i.fab.fa-github
-     
+
+    // Secondary text and links in the footer
     .text-center.p-3(style='background-color: rgba(0, 0, 0, 0.2);')
       span(style="color: black;") &copy;: &nbsp;
       a.text-dark.fw-semibold(href='/home') CCSRP
+
 script(src="/js/logout.js") 
 script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js' integrity='sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg==' crossorigin='anonymous' referrerpolicy='no-referrer')

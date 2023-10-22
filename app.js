@@ -4,8 +4,6 @@ const cookieParser = require('cookie-parser')
 const path = require('path');
 
 
-
-
 const viewsRoutes = require("./routes/viewsRoutes");
 const userRoutes = require("./routes/userRoutes")
 const serviceRoutes = require("./routes/serviceRoutes")
