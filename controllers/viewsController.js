@@ -35,11 +35,22 @@ exports.viewEvents = async (req, res, next) => {
     // console.log(services)
     var currentDate = new Date();
     var year = currentDate.getFullYear();
-    var month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Add 1 to month because it's zero-based
+    var month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
     var day = String(currentDate.getDate()).padStart(2, '0');
     var date = year + '-' + month + '-' + day;
     // console.log(formattedDate);
     // console.log(id.services[0].createdBy._id)
     res.status(200).render('viewEvents', { services, id, date });
 
+}
+exports.viewAllFolks= async (req,res,next)=>
+{
+    const service= await Service.findById(req.params.id);
+    res.status(200).render('viewAllFolks',{service})
+}
+
+exports.viewAllReview= async (req,res,next)=>
+{
+    const service= await Service.findById(req.params.id);
+    res.status(200).render('viewAllReview',{service})
 }

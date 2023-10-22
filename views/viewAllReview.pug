@@ -16,32 +16,23 @@ section.bg-light.py-2
           if user  
             li.nav-item
               a.nav-link.text-dark.ms-3.btn.btn-outline-primary.px-4.fw-semibold.border-0(href='#',class='logout-button') Logout
-            li.nav-item
-              a.nav-link.text-dark.ms-3.btn.btn-outline-primary.px-4.fw-semibold.border-0(href='/createEvent',class='logout-button') Create Event  
           else    
             li.nav-item
               a.nav-link.text-dark.ms-3.btn.btn-outline-primary.px-4.fw-semibold.border-0(href='/login') Login
-.row.mt-3
-  each u in users
-    .col-lg-4.col-md-6.col-12
-      .card
-        img.card-img-top(src='https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp' alt='Hollywood Sign on The Hill' style="width:80%; height:auto; display:block;margin:auto;")
-        .card-body
-          h5.card-title(style="text-align:center;")=u.name
-          h4(style="text-align:center; margin-top:3px;")
-            a.btn.btn-success(href=`tel:+91${u.phone}`)
-              i.fas.fa-phone
-                | Contact for emergency need
-          h4(style="text-align:center; margin-top:3px;")
-            a.btn.btn-primary(href=`mailto:${u.email}`)
-              i.fas.fa-envelope
-                |  Contact for more info
 
-          .not(style="text-align:center; margin-top:3px;") 
-              button.btn.btn-dark.position-relative(type='button')
-                a(href=`/viewEvents/${u._id}` style="color:white;")
-                  | View events
-                span.not_number.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.badge-danger(style="color:red;font-size:2rem;")=`${u.phone[0]}+`
-                  span.visually-hidden unread messages
+h1(style="text-align:center; margin-top:3px;")=`Reviews for the event ${service.serviceName}`
+.row.mt-3
+  each s in service.reviews
+        .col-lg-4.col-md-6.col-12
+            .card
+                .card-body
+                    h5.card-title(style="text-align:center;")=s.name
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") From: 
+                        span(style="margin:3px;color:green;")=s.from
+                    h3(style="text-align:center; margin-top:3px;")
+                        span(style="margin:3px;color:black;") Feedback
+                        span(style="margin:3px;color:red;")=s.feedback
+                    
 include footer
 

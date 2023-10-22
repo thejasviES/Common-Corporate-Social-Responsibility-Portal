@@ -1,5 +1,5 @@
 const Service = require('./../models/serviceModel')
-
+const nodemailer = require('nodemailer');
 exports.createEvent = async (req, res) => {
     try {
         const newEvent = await Service.create({
@@ -121,5 +121,51 @@ exports.reviewService = async (req, res) => {
 }
 
 
+exports.sendEmailToRegesteredFolks = async (req, res, next) => {
+    try {
+        const service = await Service.findById(req.body.id);
+        const message = req.body.message;
 
+        if (!service) {
+            return res.status(404).json({ message: "Service not found" });
+        }
 
+        if (!service.registeredFolks || service.registeredFolks.length === 0) {
+            return res.status(400).json({ message: "No registered folks found" });
+        }
+        const transporter = nodemailer.createTransport({
+            host: process.env.EMAIL_HOST,
+            port: process.env.EMAIL_PORT,
+            auth:
+             {
+              user: process.env.EMAIL_USERNAME,
+              pass: process.env.EMAIL_PASSWORD
+            }
+          });
+        for (let i = 0; i < service.registeredFolks.length; i++) {
+            const email = service.registeredFolks[i].email;
+
+           
+            const mailOptions = {
+                from:`${service.createdBy.email}`,
+                to: email,
+                subject: `Notification for the event ${service.serviceName} from CCSRP`,
+                text: message
+            };
+
+            
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.log('Error sending email: ' + error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+            });
+        }
+
+        res.status(200).json({ message: "Emails sent successfully" });
+    } catch (error) {
+        console.error("Error sending emails", error);
+        res.status(500).json({ message: "Failed to send emails" });
+    }
+};
